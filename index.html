@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Drilling Fluids &amp; Oilfield Services — Global Account Directory</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0b0d10;
+    --bg-panel:#12161b;
+    --bg-card:#161b21;
+    --gold:#c9a15a;
+    --gold-soft:#e4c98a;
+    --line:#262c34;
+    --text:#e9e6de;
+    --text-dim:#9aa1ab;
+    --major:#c9a15a;
+    --mid:#7fa0b8;
+    --indep:#8fae8c;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    background:radial-gradient(1200px 800px at 20% -10%, #171b20 0%, var(--bg) 55%);
+    color:var(--text);
+    font-family:'Inter',sans-serif;
+    font-weight:300;
+    min-height:100vh;
+  }
+  a{color:inherit;text-decoration:none;}
+
+  .topbar{
+    position:sticky; top:0; z-index:50;
+    background:rgba(11,13,16,0.86);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .topbar-inner{
+    max-width:1280px;margin:0 auto;padding:18px 32px;
+    display:flex;align-items:center;justify-content:space-between;gap:24px;
+  }
+  .brand{display:flex;align-items:center;gap:12px;}
+  .brand-mark{
+    width:34px;height:34px;border:1px solid var(--gold);border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Playfair Display',serif;color:var(--gold);font-size:15px;
+  }
+  .brand-text{font-family:'Playfair Display',serif;font-size:16px;letter-spacing:0.04em;color:var(--text);}
+  .brand-sub{font-size:10px;letter-spacing:0.22em;color:var(--text-dim);text-transform:uppercase;margin-top:2px;}
+  .topbar-meta{font-size:11px;color:var(--text-dim);letter-spacing:0.06em;text-align:right;}
+
+  .hero{
+    max-width:1280px;margin:0 auto;padding:64px 32px 40px;
+    border-bottom:1px solid var(--line);
+  }
+  .hero-eyebrow{
+    font-size:11px;letter-spacing:0.28em;text-transform:uppercase;color:var(--gold-soft);margin-bottom:18px;
+  }
+  .hero h1{
+    font-family:'Playfair Display',serif;font-weight:600;
+    font-size:44px;line-height:1.15;max-width:820px;color:#fff;
+  }
+  .hero h1 em{color:var(--gold);font-style:normal;}
+  .hero p{
+    margin-top:18px;max-width:640px;color:var(--text-dim);font-size:15px;line-height:1.7;font-weight:300;
+  }
+  .hero-stats{
+    display:flex;gap:48px;margin-top:40px;flex-wrap:wrap;
+  }
+  .stat-num{font-family:'Playfair Display',serif;font-size:32px;color:var(--gold-soft);}
+  .stat-label{font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-dim);margin-top:4px;}
+
+  .controls{
+    max-width:1280px;margin:0 auto;padding:28px 32px 0;
+    display:flex;gap:14px;flex-wrap:wrap;align-items:center;justify-content:space-between;
+  }
+  .controls-left{display:flex;gap:10px;flex-wrap:wrap;}
+  .chip{
+    border:1px solid var(--line);background:var(--bg-panel);color:var(--text-dim);
+    padding:9px 18px;border-radius:999px;font-size:12px;letter-spacing:0.04em;cursor:pointer;
+    transition:all .15s ease; user-select:none;
+  }
+  .chip:hover{border-color:var(--gold);color:var(--text);}
+  .chip.active{background:var(--gold);color:#14110a;border-color:var(--gold);font-weight:500;}
+
+  .search-wrap{position:relative;}
+  #search{
+    background:var(--bg-panel);border:1px solid var(--line);border-radius:999px;
+    padding:9px 18px 9px 36px;color:var(--text);font-family:'Inter',sans-serif;font-size:12.5px;
+    width:260px; outline:none; transition:border-color .15s ease;
+  }
+  #search:focus{border-color:var(--gold);}
+  .search-icon{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--text-dim);font-size:12px;}
+
+  .sort-select{
+    background:var(--bg-panel);border:1px solid var(--line);border-radius:999px;
+    padding:9px 34px 9px 16px;color:var(--text-dim);font-family:'Inter',sans-serif;font-size:12px;
+    outline:none; cursor:pointer; appearance:none;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%239aa1ab' stroke-width='1.4' fill='none'/%3E%3C/svg%3E");
+    background-repeat:no-repeat;background-position:right 14px center;
+  }
+
+  .grid{
+    max-width:1280px;margin:0 auto;padding:28px 32px 100px;
+    display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:20px;
+  }
+  .card{
+    background:linear-gradient(180deg, var(--bg-card) 0%, #12151a 100%);
+    border:1px solid var(--line);border-radius:14px;padding:26px 26px 22px;
+    display:flex;flex-direction:column;gap:16px;
+    transition:transform .18s ease, border-color .18s ease, box-shadow .18s ease;
+    position:relative; overflow:hidden;
+  }
+  .card::before{
+    content:"";position:absolute;top:0;left:0;right:0;height:2px;
+    background:linear-gradient(90deg, transparent, var(--gold), transparent);
+    opacity:0;transition:opacity .18s ease;
+  }
+  .card:hover{transform:translateY(-3px);border-color:#3a3220;box-shadow:0 20px 40px -20px rgba(0,0,0,0.6);}
+  .card:hover::before{opacity:1;}
+
+  .card-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;}
+  .card-name{font-family:'Playfair Display',serif;font-size:19px;color:#fff;line-height:1.3;}
+  .tier-badge{
+    font-size:9.5px;letter-spacing:0.12em;text-transform:uppercase;padding:4px 10px;border-radius:999px;
+    white-space:nowrap;border:1px solid transparent;
+  }
+  .tier-Major{background:rgba(201,161,90,0.14);color:var(--major);border-color:rgba(201,161,90,0.4);}
+  .tier-Mid-size{background:rgba(127,160,184,0.14);color:var(--mid);border-color:rgba(127,160,184,0.4);}
+  .tier-Independent{background:rgba(143,174,140,0.14);color:var(--indep);border-color:rgba(143,174,140,0.4);}
+
+  .card-loc{font-size:12px;color:var(--text-dim);display:flex;align-items:center;gap:6px;}
+  .card-desc{font-size:12.5px;line-height:1.6;color:#c7c3ba;font-weight:300;}
+
+  .card-stats{display:flex;gap:18px;padding:14px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+  .cs-num{font-size:15px;color:var(--gold-soft);font-family:'Playfair Display',serif;}
+  .cs-label{font-size:9.5px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-dim);margin-top:2px;}
+
+  .card-bottom{display:flex;justify-content:space-between;align-items:center;gap:10px;}
+  .ticker{font-size:11px;color:var(--text-dim);letter-spacing:0.03em;}
+  .card-links{display:flex;gap:8px;}
+  .icon-link{
+    width:30px;height:30px;border:1px solid var(--line);border-radius:8px;
+    display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--text-dim);
+    transition:all .15s ease;
+  }
+  .icon-link:hover{border-color:var(--gold);color:var(--gold-soft);}
+
+  .empty{
+    max-width:1280px;margin:0 auto;padding:80px 32px;text-align:center;color:var(--text-dim);
+    display:none;
+  }
+  .empty.show{display:block;}
+
+  footer{
+    border-top:1px solid var(--line);padding:36px 32px 60px;
+    max-width:1280px;margin:0 auto;
+  }
+  footer p{font-size:11.5px;color:var(--text-dim);line-height:1.8;max-width:760px;}
+  footer .foot-brand{font-family:'Playfair Display',serif;color:var(--gold-soft);font-size:13px;margin-bottom:10px;}
+
+  @media (max-width:640px){
+    .hero h1{font-size:32px;}
+    .topbar-inner{padding:14px 20px;}
+    .hero,.controls,.grid,footer{padding-left:20px;padding-right:20px;}
+    #search{width:100%;}
+    .controls{flex-direction:column;align-items:stretch;}
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">
+      <div class="brand-mark">D</div>
+      <div>
+        <div class="brand-text">Drilling Fluids Directory</div>
+        <div class="brand-sub">Strategic Account List</div>
+      </div>
+    </div>
+    <div class="topbar-meta">Compiled July 2026<br>Matt Malouf · Global Accounts</div>
+  </div>
+</div>
+
+<div class="hero">
+  <div class="hero-eyebrow">Oilfield Services · Global Prospecting</div>
+  <h1>A curated directory of <em>drilling fluid</em> service companies, worldwide.</h1>
+  <p>Twenty-four organizations spanning global majors, national and regional specialists, and independent operators across North America, Europe, the Middle East and Asia-Pacific — compiled from public company data and Apollo.io firmographic enrichment for outbound account planning.</p>
+  <div class="hero-stats">
+    <div><div class="stat-num" id="stat-total">—</div><div class="stat-label">Companies</div></div>
+    <div><div class="stat-num" id="stat-major">—</div><div class="stat-label">Majors</div></div>
+    <div><div class="stat-num" id="stat-mid">—</div><div class="stat-label">Mid-size / National</div></div>
+    <div><div class="stat-num" id="stat-indep">—</div><div class="stat-label">Independents</div></div>
+    <div><div class="stat-num" id="stat-regions">—</div><div class="stat-label">Regions</div></div>
+  </div>
+</div>
+
+<div class="controls">
+  <div class="controls-left" id="tierChips">
+    <div class="chip active" data-tier="all">All Tiers</div>
+    <div class="chip" data-tier="Major">Major</div>
+    <div class="chip" data-tier="Mid-size">Mid-size / National</div>
+    <div class="chip" data-tier="Independent">Independent</div>
+  </div>
+  <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;">
+    <select class="sort-select" id="sortSelect">
+      <option value="name">Sort: Name (A–Z)</option>
+      <option value="employees">Sort: Employees (high–low)</option>
+      <option value="founded">Sort: Founded (oldest first)</option>
+      <option value="region">Sort: Region</option>
+    </select>
+    <div class="search-wrap">
+      <span class="search-icon">&#9906;</span>
+      <input id="search" type="text" placeholder="Search company, city, country…">
+    </div>
+  </div>
+</div>
+
+<div class="grid" id="grid"></div>
+<div class="empty" id="empty">No companies match your filters.</div>
+
+<footer>
+  <div class="foot-brand">Drilling Fluids Directory</div>
+  <p>
+    Firmographic data (employee counts, revenue estimates, HQ, founding year, LinkedIn) sourced via Apollo.io organization enrichment, cross-referenced against public company sources. Q'Max Solutions sourced from public web research where Apollo's dataset returned a mismatched record. Apollo's free-tier plan does not include person-level search, so this directory reflects company-level contact channels (phone, LinkedIn, website) rather than named individual contacts — enrich named contacts via an Apollo paid plan, manual outreach research, or a compliant LinkedIn Sales Navigator export for the shortlist you prioritize.
+  </p>
+</footer>
+
+<script>
+const companies = [
+  {
+    "name": "Halliburton",
+    "tier": "Major",
+    "domain": "halliburton.com",
+    "website": "https://www.halliburton.com",
+    "city": "Houston",
+    "state": "Texas",
+    "country": "United States",
+    "region": "North America",
+    "employees": 48000,
+    "revenue": "$22.2B",
+    "founded": 1919,
+    "phone": "+1 281-871-2699",
+    "linkedin": "http://www.linkedin.com/company/halliburton",
+    "ticker": "NYSE: HAL",
+    "desc": "One of the world's largest oilfield service providers; Baroid is its drilling fluids division serving operators globally."
+  },
+  {
+    "name": "SLB",
+    "tier": "Major",
+    "domain": "slb.com",
+    "website": "https://www.slb.com",
+    "city": "Houston",
+    "state": "Texas",
+    "country": "United States",
+    "region": "North America",
+    "employees": 109000,
+    "revenue": "$35.7B",
+    "founded": 1926,
+    "phone": "+1 713-513-2000",
+    "linkedin": "http://www.linkedin.com/company/slbglobal",
+    "ticker": "NYSE: SLB",
+    "desc": "Formerly Schlumberger; M-I SWACO is its drilling fluids and wellbore productivity unit, active in nearly every major basin worldwide."
+  },
+  {
+    "name": "Baker Hughes",
+    "tier": "Major",
+    "domain": "bakerhughes.com",
+    "website": "https://www.bakerhughes.com",
+    "city": "Houston",
+    "state": "Texas",
+    "country": "United States",
+    "region": "North America",
+    "employees": 56000,
+    "revenue": "$27.7B",
+    "founded": 1987,
+    "phone": "+1 713-439-8600",
+    "linkedin": "http://www.linkedin.com/company/bakerhughes",
+    "ticker": "NASDAQ: BKR",
+    "desc": "Global energy technology company co-headquartered in Houston and London, with a full drilling fluids and chemicals portfolio."
+  },
+  {
+    "name": "Weatherford International",
+    "tier": "Major",
+    "domain": "weatherford.com",
+    "website": "https://www.weatherford.com",
+    "city": "Dublin",
+    "state": "",
+    "country": "Ireland",
+    "region": "Europe",
+    "employees": 18000,
+    "revenue": "$4.9B",
+    "founded": 1987,
+    "phone": "+1 713-836-4000",
+    "linkedin": "http://www.linkedin.com/company/weatherford",
+    "ticker": "NASDAQ: WFRD",
+    "desc": "Global oilfield services company; identified the Middle East as a primary growth engine for 2026-2027."
+  },
+  {
+    "name": "Newpark Resources",
+    "tier": "Mid-size",
+    "domain": "newpark.com",
+    "website": "https://www.newpark.com",
+    "city": "Katy",
+    "state": "Texas",
+    "country": "United States",
+    "region": "North America",
+    "employees": 1600,
+    "revenue": "$277M",
+    "founded": 1932,
+    "phone": "+1 281-362-6800",
+    "linkedin": "http://www.linkedin.com/company/newpark",
+    "ticker": "NYSE: NR",
+    "desc": "Global provider of drilling fluids systems and completion fluids, pure-play specialist in the sector."
+  },
+  {
+    "name": "ONE TETRA (TETRA Technologies)",
+    "tier": "Mid-size",
+    "domain": "onetetra.com",
+    "website": "https://www.onetetra.com",
+    "city": "Spring / The Woodlands",
+    "state": "Texas",
+    "country": "United States",
+    "region": "North America",
+    "employees": 1400,
+    "revenue": "$630.9M",
+    "founded": 1981,
+    "phone": "+1 281-367-1983",
+    "linkedin": "http://www.linkedin.com/company/one-tetra",
+    "ticker": "NYSE: TTI",
+    "desc": "Energy services and specialty chemicals company with a completion and drilling fluids product line."
+  },
+  {
+    "name": "NOV Inc.",
+    "tier": "Mid-size",
+    "domain": "nov.com",
+    "website": "https://www.nov.com",
+    "city": "Houston",
+    "state": "Texas",
+    "country": "United States",
+    "region": "North America",
+    "employees": 35000,
+    "revenue": "$8.7B",
+    "founded": 1841,
+    "phone": "+1 713-375-3700",
+    "linkedin": "http://www.linkedin.com/company/novglobal",
+    "ticker": "NYSE: NOV",
+    "desc": "Major equipment and technology provider across the drilling and production lifecycle, including fluids systems."
+  },
+  {
+    "name": "Canadian Energy Services (CES)",
+    "tier": "Mid-size",
+    "domain": "cesenergysolutions.com",
+    "website": "https://www.cesenergysolutions.com",
+    "city": "Calgary",
+    "state": "Alberta",
+    "country": "Canada",
+    "region": "North America",
+    "employees": 2800,
+    "revenue": "$1.7B",
+    "founded": 2001,
+    "phone": "+1 403-269-2800",
+    "linkedin": "http://www.linkedin.com/company/canadian-energy-services",
+    "ticker": "TSX: CEU",
+    "desc": "Leading provider of drilling fluids and chemical solutions across the North American oil and gas industry."
+  },
+  {
+    "name": "SECURE (SECURE Energy Services)",
+    "tier": "Mid-size",
+    "domain": "secure.ca",
+    "website": "https://www.secure.ca",
+    "city": "Calgary",
+    "state": "Alberta",
+    "country": "Canada",
+    "region": "North America",
+    "employees": 2000,
+    "revenue": "$1.1B",
+    "founded": 2007,
+    "phone": "+1 403-984-6100",
+    "linkedin": "http://www.linkedin.com/company/securewasteinfrastructure",
+    "ticker": "TSX: SES",
+    "desc": "Canadian waste management and integrated energy infrastructure company serving upstream drilling operations."
+  },
+  {
+    "name": "Q'Max Solutions",
+    "tier": "Mid-size",
+    "domain": "qmaxsolutions.com",
+    "website": "https://www.qmaxsolutions.com",
+    "city": "Calgary",
+    "state": "Alberta",
+    "country": "Canada",
+    "region": "North America",
+    "employees": null,
+    "revenue": null,
+    "founded": 1993,
+    "phone": "+1 403-269-2242",
+    "linkedin": "https://www.linkedin.com/company/q'max-solutions-inc-",
+    "ticker": "Private",
+    "desc": "Independent drilling fluids and solids control specialist operating in nine countries including Mexico, Colombia and Ecuador.",
+    "sourced": "web"
+  },
+  {
+    "name": "Scomi Group Bhd",
+    "tier": "Mid-size",
+    "domain": "scomigroup.com.my",
+    "website": "https://www.scomigroup.com.my",
+    "city": "Petaling Jaya",
+    "state": "Selangor",
+    "country": "Malaysia",
+    "region": "Asia-Pacific",
+    "employees": 2000,
+    "revenue": "$10M*",
+    "founded": 1961,
+    "phone": "+60 3-7717 3000",
+    "linkedin": "http://www.linkedin.com/company/scomi-group-berhad",
+    "ticker": "Bursa Malaysia: SCOMI",
+    "desc": "Malaysian technology and investment holding company; oilfield services segment covers drilling fluids and waste management across 19-27 countries."
+  },
+  {
+    "name": "Chevron Phillips Chemical",
+    "tier": "Mid-size",
+    "domain": "cpchem.com",
+    "website": "https://www.cpchem.com",
+    "city": "Spring",
+    "state": "Texas",
+    "country": "United States",
+    "region": "North America",
+    "employees": 5500,
+    "revenue": "$12.5B",
+    "founded": 2000,
+    "phone": "+1 832-813-4100",
+    "linkedin": "http://www.linkedin.com/company/chevron-phillips-chemical-company",
+    "ticker": "JV (Chevron/Phillips 66)",
+    "desc": "Global petrochemical manufacturer; Drilling Specialties division supplies performance chemicals for drilling fluid formulation."
+  },
+  {
+    "name": "COSL (China Oilfield Services)",
+    "tier": "Mid-size",
+    "domain": "cosl.com.cn",
+    "website": "http://www.cosl.com.cn",
+    "city": "Beijing / Tianjin",
+    "state": "",
+    "country": "China",
+    "region": "Asia-Pacific",
+    "employees": 1500,
+    "revenue": "$2.7B",
+    "founded": 1982,
+    "phone": "+86 10 8452 2840",
+    "linkedin": "http://www.linkedin.com/company/cosl",
+    "ticker": "SEHK: 2883",
+    "desc": "Subsidiary of CNOOC; Well Services division covers directional drilling, logging, drilling and completion fluids, and cementing."
+  },
+  {
+    "name": "NESR (National Energy Services Reunited)",
+    "tier": "Mid-size",
+    "domain": "nesr.com",
+    "website": "https://www.nesr.com",
+    "city": "Houston",
+    "state": "Texas",
+    "country": "United States",
+    "region": "Middle East / North America",
+    "employees": 6600,
+    "revenue": "$1.3B",
+    "founded": 2017,
+    "phone": "+1 832-925-3777",
+    "linkedin": "http://www.linkedin.com/company/nationalenergyservices",
+    "ticker": "NASDAQ: NESR",
+    "desc": "Largest national oilfield services provider across MENA and Asia-Pacific; drilling and evaluation services segment includes fluids."
+  },
+  {
+    "name": "Archer (the Well Company)",
+    "tier": "Mid-size",
+    "domain": "archerwell.com",
+    "website": "https://www.archerwell.com",
+    "city": "Sandnes",
+    "state": "Rogaland",
+    "country": "Norway",
+    "region": "Europe",
+    "employees": 4400,
+    "revenue": "$1.2B",
+    "founded": 2011,
+    "phone": "+47 51 30 80 00",
+    "linkedin": "http://www.linkedin.com/company/archer---the-well-company",
+    "ticker": "Oslo: ARCH",
+    "desc": "Global well services company based in Norway, active across the North Sea, Latin America and internationally."
+  },
+  {
+    "name": "AES Drilling Fluids",
+    "tier": "Independent",
+    "domain": "aesfluids.com",
+    "website": "https://www.aesfluids.com",
+    "city": "Houston",
+    "state": "Texas",
+    "country": "United States",
+    "region": "North America",
+    "employees": 1100,
+    "revenue": "$385.2M",
+    "founded": 2006,
+    "phone": "+1 281-556-5628",
+    "linkedin": "http://www.linkedin.com/company/aesdrillingfluids",
+    "ticker": "Private",
+    "desc": "Full-service drilling fluids systems, production chemicals and frac fluids provider across major U.S. shale plays."
+  },
+  {
+    "name": "GEO Drilling Fluids",
+    "tier": "Independent",
+    "domain": "geodf.com",
+    "website": "https://www.geodf.com",
+    "city": "Bakersfield",
+    "state": "California",
+    "country": "United States",
+    "region": "North America",
+    "employees": 84,
+    "revenue": "$46.4M",
+    "founded": 1968,
+    "phone": "+1 800-438-7436",
+    "linkedin": "http://www.linkedin.com/company/geo-drilling-fluids-inc-",
+    "ticker": "Private",
+    "desc": "Dominant independent mud company in California, also serving the Rockies and Mid-Continent, plus geothermal markets."
+  },
+  {
+    "name": "IDEC (International Drilling Fluids & Engineering Services)",
+    "tier": "Independent",
+    "domain": "idecint.com",
+    "website": "https://www.idecint.com",
+    "city": "Dubai",
+    "state": "",
+    "country": "United Arab Emirates",
+    "region": "Middle East",
+    "employees": 33,
+    "revenue": "$26.1M",
+    "founded": 2012,
+    "phone": "+971 4 451 8052",
+    "linkedin": "http://www.linkedin.com/company/idec-international",
+    "ticker": "Private",
+    "desc": "Multinational operating across East Africa and Iraq, offering custom-engineered drilling and completion fluids."
+  },
+  {
+    "name": "Gumpro Drilling Fluids",
+    "tier": "Independent",
+    "domain": "gumprodf.com",
+    "website": "https://www.gumprodf.com",
+    "city": "Mumbai",
+    "state": "Maharashtra",
+    "country": "India",
+    "region": "Asia / Middle East",
+    "employees": 500,
+    "revenue": null,
+    "founded": 1983,
+    "phone": "+91 22 2577 3200",
+    "linkedin": "http://www.linkedin.com/company/gumprodrillingfluids",
+    "ticker": "Private",
+    "desc": "India's largest specialty drilling fluids manufacturer, with factories in India, UAE and Saudi Arabia, exporting to 42 countries."
+  },
+  {
+    "name": "SMD",
+    "tier": "Independent",
+    "domain": "smdmud.com",
+    "website": "https://www.smdmud.com",
+    "city": "Puyang",
+    "state": "Henan",
+    "country": "China",
+    "region": "Asia-Pacific",
+    "employees": 13,
+    "revenue": null,
+    "founded": 1997,
+    "phone": "",
+    "linkedin": "http://www.linkedin.com/company/sinomudgroup",
+    "ticker": "Private",
+    "desc": "Global drilling fluid chemicals manufacturer with stock points across Latin America, West Africa and Southeast Asia."
+  },
+  {
+    "name": "Basin Fluids",
+    "tier": "Independent",
+    "domain": "basinfluids.com",
+    "website": "https://www.basinfluids.com",
+    "city": "Denver",
+    "state": "Colorado",
+    "country": "United States",
+    "region": "North America",
+    "employees": 12,
+    "revenue": null,
+    "founded": 2016,
+    "phone": "+1 432-448-3144",
+    "linkedin": "http://www.linkedin.com/company/basin-fluids-llc",
+    "ticker": "Private",
+    "desc": "Independent drilling fluids company serving Colorado, Wyoming, Oklahoma and Texas from a company-owned West Texas facility."
+  },
+  {
+    "name": "Mudsmith",
+    "tier": "Independent",
+    "domain": "mudsmith.com",
+    "website": "https://www.mudsmith.com",
+    "city": "Midland",
+    "state": "Texas",
+    "country": "United States",
+    "region": "North America",
+    "employees": 33,
+    "revenue": null,
+    "founded": null,
+    "phone": "+1 432-687-6837",
+    "linkedin": "http://www.linkedin.com/company/mudsmith-ltd.",
+    "ticker": "Private",
+    "desc": "Trusted Permian Basin source for drilling, completion, cementing and workover fluids for over 26 years."
+  },
+  {
+    "name": "MTN MUD",
+    "tier": "Independent",
+    "domain": "mtnmud.com",
+    "website": "https://www.mtnmud.com",
+    "city": "Gillette",
+    "state": "Wyoming",
+    "country": "United States",
+    "region": "North America",
+    "employees": 19,
+    "revenue": null,
+    "founded": 2006,
+    "phone": "+1 307-682-8688",
+    "linkedin": "http://www.linkedin.com/company/mtnmud",
+    "ticker": "Private",
+    "desc": "Only full-service drilling fluid supply company in the Powder River Basin, serving the Rockies region."
+  },
+  {
+    "name": "RM Oilfield Services",
+    "tier": "Independent",
+    "domain": "rmoilfield.com",
+    "website": "https://www.rmoilfield.com",
+    "city": "Kalispell",
+    "state": "Montana",
+    "country": "United States",
+    "region": "North America",
+    "employees": 3,
+    "revenue": null,
+    "founded": 2010,
+    "phone": "+1 406-272-6092",
+    "linkedin": "http://www.linkedin.com/company/rm-oilfield-services",
+    "ticker": "Private",
+    "desc": "Independent oilfield service company specializing in drilling fluids and solids control equipment."
+  }
+];
+
+const grid = document.getElementById('grid');
+const empty = document.getElementById('empty');
+const searchInput = document.getElementById('search');
+const sortSelect = document.getElementById('sortSelect');
+const chips = document.querySelectorAll('.chip');
+
+let activeTier = 'all';
+
+function fmtNum(n){
+  if(n === null || n === undefined) return '—';
+  return n.toLocaleString('en-US');
+}
+
+function card(c){
+  const tierClass = 'tier-' + c.tier.replace(' ', '-');
+  const loc = [c.city, c.state, c.country].filter(Boolean).join(', ');
+  return `
+  <div class="card" data-name="${c.name.toLowerCase()}" data-city="${(c.city||'').toLowerCase()}" data-country="${(c.country||'').toLowerCase()}">
+    <div class="card-top">
+      <div class="card-name">${c.name}</div>
+      <div class="tier-badge ${tierClass}">${c.tier}</div>
+    </div>
+    <div class="card-loc">${loc}</div>
+    <div class="card-desc">${c.desc}</div>
+    <div class="card-stats">
+      <div><div class="cs-num">${fmtNum(c.employees)}</div><div class="cs-label">Employees</div></div>
+      <div><div class="cs-num">${c.revenue || '—'}</div><div class="cs-label">Revenue</div></div>
+      <div><div class="cs-num">${c.founded || '—'}</div><div class="cs-label">Founded</div></div>
+    </div>
+    <div class="card-bottom">
+      <div class="ticker">${c.ticker || ''}</div>
+      <div class="card-links">
+        <a class="icon-link" href="${c.website}" target="_blank" rel="noopener" title="Website">&#8599;</a>
+        <a class="icon-link" href="${c.linkedin}" target="_blank" rel="noopener" title="LinkedIn">in</a>
+        ${c.phone ? `<a class="icon-link" href="tel:${c.phone.replace(/[^0-9+]/g,'')}" title="Call">&#9742;</a>` : ''}
+      </div>
+    </div>
+  </div>`;
+}
+
+function render(){
+  const q = searchInput.value.trim().toLowerCase();
+  const sortBy = sortSelect.value;
+
+  let list = companies.filter(c => activeTier === 'all' || c.tier === activeTier);
+  if(q){
+    list = list.filter(c =>
+      c.name.toLowerCase().includes(q) ||
+      (c.city||'').toLowerCase().includes(q) ||
+      (c.country||'').toLowerCase().includes(q) ||
+      (c.region||'').toLowerCase().includes(q)
+    );
+  }
+
+  list.sort((a,b) => {
+    if(sortBy === 'employees') return (b.employees||0) - (a.employees||0);
+    if(sortBy === 'founded') return (a.founded||9999) - (b.founded||9999);
+    if(sortBy === 'region') return (a.region||'').localeCompare(b.region||'');
+    return a.name.localeCompare(b.name);
+  });
+
+  grid.innerHTML = list.map(card).join('');
+  empty.classList.toggle('show', list.length === 0);
+}
+
+chips.forEach(chip => {
+  chip.addEventListener('click', () => {
+    chips.forEach(c => c.classList.remove('active'));
+    chip.classList.add('active');
+    activeTier = chip.dataset.tier;
+    render();
+  });
+});
+searchInput.addEventListener('input', render);
+sortSelect.addEventListener('change', render);
+
+function initStats(){
+  document.getElementById('stat-total').textContent = companies.length;
+  document.getElementById('stat-major').textContent = companies.filter(c => c.tier === 'Major').length;
+  document.getElementById('stat-mid').textContent = companies.filter(c => c.tier === 'Mid-size').length;
+  document.getElementById('stat-indep').textContent = companies.filter(c => c.tier === 'Independent').length;
+  document.getElementById('stat-regions').textContent = new Set(companies.map(c => c.region)).size;
+}
+
+initStats();
+render();
+</script>
+</body>
+</html>
